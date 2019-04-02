@@ -108,7 +108,15 @@ export class GoogleSheetsContextProvider extends React.Component {
         .map(el => ({
           name: el.candidate,
           votes: parseInt(el.value)
-        }))
+        })),
+      totalVotes: this.state.rawSheetsData.data.rows
+        .filter(
+          el =>
+            el.raceslug === row.slug && el.candidate !== "reportingPrecincts"
+        )
+        .reduce((previous, current) => {
+          return previous + parseInt(current.value);
+        }, 0)
     }));
     return races;
   }
