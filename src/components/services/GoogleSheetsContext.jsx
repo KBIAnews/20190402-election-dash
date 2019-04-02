@@ -96,7 +96,7 @@ export class GoogleSheetsContextProvider extends React.Component {
       slug: row.slug,
       name: row.name,
       county: row.county,
-      totalPrecincts: row.totalPrecincts,
+      totalPrecincts: row.totalprecincts,
       reportedPrecincts: this.state.rawSheetsData.data.rows.filter(
         el => el.raceslug === row.slug && el.candidate === "reportingPrecincts"
       )[0].value,
