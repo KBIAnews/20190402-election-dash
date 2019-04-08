@@ -6,17 +6,17 @@ export class RaceView extends Component {
   render() {
     const { race } = this.props;
     return (
-      <div className="race col-sm-3">
+      <div className="race race-col-ind">
         <h3 className="text-center">{this.props.race.name}</h3>
         {this.props.race.candidates.length > 0 &&
-          this.props.race.candidates.map(candidate => (
-            <CandidateBar race={race} candidate={candidate} />
+          this.props.race.candidates.map((candidate, i) => (
+            <CandidateBar race={race} candidate={candidate} key={i} />
           ))}
         {this.props.race.reportedPrecincts} of {this.props.race.totalPrecincts}{" "}
         precincts reporting.
-        <pre style={{ wordWrap: "break-word", whiteSpace: "pre-wrap" }}>
-          {JSON.stringify(this.props.race)}
-        </pre>
+        {/*<pre style={{ wordWrap: "break-word", whiteSpace: "pre-wrap" }}>*/}
+        {/*  {JSON.stringify(this.props.race)}*/}
+        {/*</pre>*/}
       </div>
     );
   }

@@ -8299,3 +8299,23 @@ h1 {
 .static-bar {
   transition: background 1s ease-in-out;
 }
+
+div.race-stack{
+  margin: 0 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-gap: 15px;
+}
+
+@media screen and (max-width: 700px){
+  div.race-stack{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 500px){
+  div.race-stack{
+    grid-template-columns: 1fr;
+  }
+}

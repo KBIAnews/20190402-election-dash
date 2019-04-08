@@ -12,7 +12,8 @@ export class GoogleSheetsContextProvider extends React.Component {
       pageShouldRemindScrollable: false,
       rawWorkbookData: null,
       rawSheetsData: null,
-      workbookKey: null
+      workbookKey: null,
+      showAllRaces: false
     };
   }
 
@@ -90,9 +91,15 @@ export class GoogleSheetsContextProvider extends React.Component {
       });
   }
 
+  toggleShowAllRaces() {
+    this.setState({
+      showAllRaces: !this.state.showAllRaces
+    });
+  }
+
   getRaces() {
-    console.log("getracestrigger", this.state.rawSheetsData);
     let races = this.state.rawSheetsData.races.rows.map(row => ({
+      priority: row.priority === "YES" ? true : false,
       slug: row.slug,
       name: row.name,
       county: row.county,
@@ -135,7 +142,8 @@ export class GoogleSheetsContextProvider extends React.Component {
           getCategoryColor: this.getCategoryColor.bind(this),
           getCategoryName: this.getCategoryName.bind(this),
           getCategoriesList: this.getCategoriesList.bind(this),
-          getRaces: this.getRaces.bind(this)
+          getRaces: this.getRaces.bind(this),
+          toggleShowAllRaces: this.toggleShowAllRaces.bind(this)
         }}
       >
         {this.props.children}

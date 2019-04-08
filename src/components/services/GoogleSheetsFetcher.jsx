@@ -17,17 +17,20 @@ class GoogleSheetsFetcher extends React.Component {
   }
 
   componentDidMount() {
-    this.requestAndGatherSheetAssets().then(result => {
-      this.context.imposeSuspense();
-      this.context.setWorkbookKey(result.workbookKey);
-      this.context.setRawWorkbookData(result.rawWorkbookData);
-      this.context.setRawSheetsData({
-        races: result.races,
-        data: result.data,
-        labels: result.labels
+    const func = () => {
+      this.requestAndGatherSheetAssets().then(result => {
+        this.context.setWorkbookKey(result.workbookKey);
+        this.context.setRawWorkbookData(result.rawWorkbookData);
+        this.context.setRawSheetsData({
+          races: result.races,
+          data: result.data,
+          labels: result.labels
+        });
+        this.context.removeSuspense();
       });
-      this.context.removeSuspense();
-    });
+    };
+    func();
+    window.setInterval(func, 30000);
   }
 
   async requestAndGatherSheetAssets() {

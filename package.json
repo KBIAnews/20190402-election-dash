@@ -2,6 +2,7 @@
   "name": "20190401-election-dash",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://apps.kbia.fm/20190402-elex-results",
   "dependencies": {
     "prettier": "^1.16.4",
     "prop-types": "latest",
